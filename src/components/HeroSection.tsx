@@ -17,10 +17,10 @@ const HeroSection = () => {
       
       <div className="container mx-auto px-4 text-center text-white relative z-10 opacity-0 animate-[fadeInUp_0.7s_ease-out_forwards]">
         <h1 className="mb-6 max-w-4xl mx-auto">
-          We build delightful native iOS apps.
+          We ship profitable iOS apps that users love.
         </h1>
         <p className="text-xl lg:text-2xl mb-12 text-white/90 max-w-2xl mx-auto font-light">
-          Designed with SwiftUI. Crafted for people.
+          From concept to App Store success. Native SwiftUI development that drives real business results.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

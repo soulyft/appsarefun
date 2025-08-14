@@ -2,11 +2,11 @@ import { CheckCircle } from "lucide-react";
 
 const AboutSection = () => {
   const pillars = [
-    "Native Swift + SwiftUI",
-    "Real-time audio / AUv3 / MIDI",
-    "Accessibility & performance first",
-    "App Store launch & iteration",
-    "Small team, fast feedback"
+    "Native Swift + SwiftUI expertise",
+    "Real-time audio / AUv3 / MIDI integration", 
+    "App Store optimization & launch strategy",
+    "Performance-first architecture",
+    "ROI-focused development process"
   ];
 
   return (
@@ -14,12 +14,11 @@ const AboutSection = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-16 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
-            Native iOS experiences that feel obvious
+            Turn your app idea into revenue
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Apps Are Fun designs and builds thoughtful iOS experiences that feel obvious from the first tap. 
-            We specialize in SwiftUI and real-time audio, shipping high-quality apps with smooth performance, 
-            accessibility, and a clean, modern aesthetic.
+            Apps Are Fun specializes in building profitable iOS applications that scale. We combine cutting-edge SwiftUI development 
+            with proven business strategies to deliver apps that not only delight users but drive measurable ROI for our clients.
           </p>
         </div>
         

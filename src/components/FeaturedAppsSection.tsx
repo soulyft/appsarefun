@@ -11,35 +11,35 @@ const FeaturedAppsSection = () => {
       id: "chime",
       name: "Chime",
       icon: chimeIcon,
-      shortDescription: "A touch-first instrument for sonic exploration.",
-      longDescription: "Built in collaboration with Sketch Audio, Chime turns gestures into expressive sound. Minimal UI, rich tone, zero friction.",
+      shortDescription: "Turn noise into music with touch.",
+      longDescription: "Built for the curious, Chime transforms raw noise into rich, playable textures the moment your fingers hit the screen. No text labels, just discovery. Called 'so satisfying' by users.",
       available: true,
-      appStoreUrl: "#"
+      appStoreUrl: "https://apps.apple.com/us/app/chime-turn-noise-into-music/id6692633791"
     },
     {
       id: "gradient-synth", 
       name: "Gradient Synth",
       icon: gradientSynthIcon,
-      shortDescription: "Turn colors into sounds.",
-      longDescription: "Swipe across a color gradient to sculpt evolving soundscapes. Beginner-friendly, deep for pros—MIDI and performance-ready.",
+      shortDescription: "Make music from color.",
+      longDescription: "Tap, slide, and hear gradients morph into pads, leads, and drones. Designed with beginners in mind, making music exploration fun and intuitive for everyone.",
       available: true,
-      appStoreUrl: "#"
+      appStoreUrl: "https://apps.apple.com/us/app/gradient-synth/id6477543878"
     },
     {
       id: "winter-zen",
       name: "Winter Zen", 
       icon: winterZenIcon,
-      shortDescription: "A calming snow globe in your pocket.",
-      longDescription: "An interactive winter scene for focus and relaxation. Gentle animations, serene audio, pure unwind.",
+      shortDescription: "A musical snow globe for relaxation.",
+      longDescription: "Step into a serene winter wonderland that transforms your device into an interactive snow globe. Each tap creates cascading snowflakes and ambient soundscapes.",
       available: true,
-      appStoreUrl: "#"
+      appStoreUrl: "https://apps.apple.com/us/app/winter-zen-snow-globe-music/id1659934804"
     },
     {
       id: "promote-pdx",
       name: "Promote PDX",
       icon: promotePdxIcon,
       shortDescription: "Discover Portland's live music scene.",
-      longDescription: "A community-minded guide to artists, venues, and shows—built to support local music.",
+      longDescription: "A community-minded guide to artists, venues, and shows—built to support local music discovery and connect fans with Portland's vibrant scene.",
       available: false,
       comingSoon: true
     }

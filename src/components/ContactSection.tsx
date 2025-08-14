@@ -35,10 +35,11 @@ const ContactSection = () => {
       <div className="container mx-auto max-w-2xl">
         <div className="text-center mb-12 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
-            Let's make something fun
+            Ready to build your next iOS success story?
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Have an idea, or want to collaborate? We'd love to hear from you.
+            Whether you're a startup with a groundbreaking idea or an established business looking to expand into mobile, 
+            we'd love to discuss how we can help you succeed.
           </p>
           
           <a 
@@ -78,7 +79,7 @@ const ContactSection = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="project">What are you building?</Label>
+            <Label htmlFor="project">Tell us about your project</Label>
             <Textarea 
               id="project"
               name="project"
@@ -86,7 +87,7 @@ const ContactSection = () => {
               onChange={handleChange}
               rows={4}
               className="bg-background border-border/50"
-              placeholder="Tell us about your project, timeline, or any questions you have..."
+              placeholder="Describe your app idea, target audience, business goals, timeline, or budget..."
             />
           </div>
           
@@ -95,11 +96,11 @@ const ContactSection = () => {
             size="lg" 
             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
           >
-            Send message
+            Get free consultation
           </Button>
           
           <p className="text-xs text-muted-foreground text-center">
-            We'll only use your info to reply. No spam.
+            We'll provide a detailed project proposal within 48 hours. No spam, ever.
           </p>
         </form>
       </div>

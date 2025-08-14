@@ -5,23 +5,23 @@ const ServicesSection = () => {
   const capabilities = [
     {
       icon: Smartphone,
-      text: "Swift + SwiftUI app development"
+      text: "Full-stack iOS development (SwiftUI, Core Data, CloudKit)"
     },
     {
       icon: Volume2,
-      text: "Real-time audio (Core Audio, AUv3, MIDI, Bluetooth MIDI)"
+      text: "Advanced audio features (Core Audio, AUv3, MIDI, real-time processing)"
     },
     {
       icon: Palette,
-      text: "Product design & interaction design"
+      text: "User experience design & conversion optimization"
     },
     {
       icon: Zap,
-      text: "App performance, accessibility, and offline-friendly UX"
+      text: "Performance optimization & technical architecture"
     },
     {
       icon: Store,
-      text: "App Store launch, beta/TestFlight, and updates"
+      text: "App Store launch strategy, ASO, and revenue optimization"
     }
   ];
 
@@ -34,11 +34,11 @@ const ServicesSection = () => {
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
-            Available for select collaborations
+            Transform your business with a custom iOS app
           </h2>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
-            We prototype, polish, and ship native iOS experiences—from idea to App Store. 
-            If you need a small senior team that moves fast and cares about the details, let's talk.
+            Partner with a proven team that delivers results. We take your vision from concept to profitable App Store presence, 
+            handling everything from development and design to launch strategy and ongoing optimization.
           </p>
         </div>
         
