@@ -2,41 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Apps Are Fun Design System - Blues & Greens with Apple-like aesthetics */
 
 @layer base {
   :root {
+    /* Primary brand colors - Blues to Greens */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 215 25% 27%;
+    
+    /* Card and surface colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 215 25% 27%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --popover-foreground: 215 25% 27%;
+    
+    /* Primary brand colors */
+    --primary: 214 89% 52%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary brand colors */
+    --secondary: 146 64% 47%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted colors for subtle elements */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    
+    /* Accent colors */
+    --accent: 163 94% 24%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* System colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 214 89% 52%;
+    
+    /* Design system tokens */
+    --radius: 0.75rem;
+    
+    /* Brand gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(214, 89%, 52%) 0%, hsl(163, 94%, 24%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210, 40%, 98%) 0%, hsl(220, 13%, 95%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+    
+    /* Typography scale */
+    --font-size-hero: 3.5rem;
+    --font-size-xl: 2.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    
+    /* Spacing scale */
+    --spacing-hero: 6rem;
+    --spacing-section: 4rem;
+    --spacing-card: 2rem;
+    
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(214 89% 52% / 0.1);
+    --shadow-card: 0 8px 25px -8px hsl(215 25% 27% / 0.08);
+    --shadow-hover: 0 12px 35px -8px hsl(214 89% 52% / 0.15);
+    
+    /* Animations */
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +132,61 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Typography system */
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-xl sm:text-2xl font-semibold tracking-tight;
+  }
+  
+  p {
+    @apply text-base lg:text-lg leading-relaxed;
+  }
+}
+
+@layer components {
+  /* Hero gradient background */
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  
+  .gradient-subtle {
+    background: var(--gradient-subtle);
+  }
+  
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+  
+  /* App-style card hover effect */
+  .app-card {
+    @apply bg-card border border-border/50 rounded-2xl p-6 transition-all duration-300;
+    @apply hover:shadow-[var(--shadow-hover)] hover:-translate-y-1;
+    background: var(--gradient-card);
+  }
+  
+  /* Smooth fade-in animation */
+  .fade-in {
+    @apply animate-in fade-in duration-700 slide-in-from-bottom-4;
+  }
+  
+  /* Hero section styling */
+  .hero-section {
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 px-4 sm:px-6 lg:px-8;
   }
 }
