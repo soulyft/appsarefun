@@ -32,7 +32,7 @@ const ServicesSection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-12 animate-in slide-in-from-bottom-4 duration-700">
+        <div className="text-center mb-12 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
             Available for select collaborations
           </h2>
@@ -42,7 +42,7 @@ const ServicesSection = () => {
           </p>
         </div>
         
-        <div className="space-y-4 mb-12 animate-in slide-in-from-bottom-6 duration-700 delay-200">
+        <div className="space-y-4 mb-12 opacity-0 animate-[fadeInUp_0.7s_ease-out_0.2s_forwards]">
           {capabilities.map((capability, index) => (
             <div 
               key={index} 
@@ -54,7 +54,7 @@ const ServicesSection = () => {
           ))}
         </div>
         
-        <div className="text-center animate-in slide-in-from-bottom-8 duration-700 delay-300">
+        <div className="text-center opacity-0 animate-[fadeInUp_0.7s_ease-out_0.3s_forwards]">
           <Button 
             size="lg" 
             onClick={scrollToContact}

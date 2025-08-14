@@ -12,7 +12,7 @@ const AboutSection = () => {
   return (
     <section className="section-padding bg-background">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 animate-in slide-in-from-bottom-4 duration-700">
+        <div className="text-center mb-16 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
             Native iOS experiences that feel obvious
           </h2>
@@ -23,7 +23,7 @@ const AboutSection = () => {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-in slide-in-from-bottom-6 duration-700 delay-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0 animate-[fadeInUp_0.7s_ease-out_0.2s_forwards]">
           {pillars.map((pillar, index) => (
             <div 
               key={index} 

@@ -48,7 +48,7 @@ const FeaturedAppsSection = () => {
   return (
     <section id="featured-apps" className="section-padding gradient-subtle">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 animate-in slide-in-from-bottom-4 duration-700">
+        <div className="text-center mb-16 opacity-0 animate-fadeInUp">
           <h2 className="mb-6 text-foreground">
             Featured Apps
           </h2>
@@ -61,7 +61,8 @@ const FeaturedAppsSection = () => {
           {apps.map((app, index) => (
             <div 
               key={app.id} 
-              className="app-card group animate-in slide-in-from-bottom-6 duration-700"
+              className="app-card group opacity-0 animate-[fadeInUp_0.7s_ease-out_forwards]"
+              style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
             >
               <div className="flex items-start gap-4 mb-4">
                 <img 
