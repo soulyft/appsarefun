@@ -15,7 +15,7 @@ const HeroSection = () => {
         <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/15 rounded-full blur-lg"></div>
       </div>
       
-      <div className="container mx-auto px-4 text-center text-white relative z-10 fade-in">
+      <div className="container mx-auto px-4 text-center text-white relative z-10 animate-in slide-in-from-bottom-4 duration-700">
         <h1 className="mb-6 max-w-4xl mx-auto">
           We build delightful native iOS apps.
         </h1>

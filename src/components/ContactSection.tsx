@@ -33,7 +33,7 @@ const ContactSection = () => {
   return (
     <section id="contact" className="section-padding bg-background">
       <div className="container mx-auto max-w-2xl">
-        <div className="text-center mb-12 fade-in">
+        <div className="text-center mb-12 animate-in slide-in-from-bottom-4 duration-700">
           <h2 className="mb-6 text-foreground">
             Let's make something fun
           </h2>
@@ -50,7 +50,7 @@ const ContactSection = () => {
           </a>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-6 fade-in">
+        <form onSubmit={handleSubmit} className="space-y-6 animate-in slide-in-from-bottom-6 duration-700 delay-200">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>

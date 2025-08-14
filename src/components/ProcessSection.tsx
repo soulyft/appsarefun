@@ -32,7 +32,7 @@ const ProcessSection = () => {
   return (
     <section className="section-padding gradient-subtle">
       <div className="container mx-auto max-w-6xl">
-        <div className="text-center mb-16 fade-in">
+        <div className="text-center mb-16 animate-in slide-in-from-bottom-4 duration-700">
           <h2 className="mb-6 text-foreground">
             Our Process
           </h2>
@@ -45,8 +45,7 @@ const ProcessSection = () => {
           {steps.map((step, index) => (
             <div 
               key={index} 
-              className="text-center fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="text-center animate-in slide-in-from-bottom-6 duration-700 relative"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
                 <step.icon className="h-8 w-8" />

@@ -174,11 +174,6 @@
     background: var(--gradient-card);
   }
   
-  /* Smooth fade-in animation */
-  .fade-in {
-    @apply animate-in fade-in duration-700 slide-in-from-bottom-4;
-  }
-  
   /* Hero section styling */
   .hero-section {
     background: var(--gradient-hero);
