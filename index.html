@@ -10,11 +10,14 @@
     <meta property="og:title" content="Apps Are Fun — iOS App Development That Drives Results" />
     <meta property="og:description" content="Transform your business with custom iOS apps. Expert SwiftUI development, App Store optimization, and proven results. From startups to enterprise - we deliver profitable mobile solutions." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <script>
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
 
   <body>

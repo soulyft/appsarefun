@@ -43,11 +43,11 @@ const ContactSection = () => {
           </p>
           
           <a 
-            href="mailto:hello@appsarefun.com"
+            href="mailto:dev@appsarefun.com"
             className="inline-flex items-center gap-2 text-primary hover:text-primary/80 text-lg font-medium transition-colors"
           >
             <Mail className="h-5 w-5" />
-            hello@appsarefun.com
+            dev@appsarefun.com
           </a>
         </div>
         

@@ -1,25 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
-import chimeIcon from "@/assets/chime-icon.png";
-import gradientSynthIcon from "@/assets/gradient-synth-icon.png";
-import winterZenIcon from "@/assets/winter-zen-icon.png";
-import promotePdxIcon from "@/assets/promote-pdx-icon.png";
 
 const FeaturedAppsSection = () => {
   const apps = [
     {
       id: "chime",
       name: "Chime",
-      icon: chimeIcon,
+      icon: "https://placehold.co/128x128?text=Chime",
       shortDescription: "Turn noise into music with touch.",
       longDescription: "Built for the curious, Chime transforms raw noise into rich, playable textures the moment your fingers hit the screen. No text labels, just discovery. Called 'so satisfying' by users.",
       available: true,
       appStoreUrl: "https://apps.apple.com/us/app/chime-turn-noise-into-music/id6692633791"
     },
     {
-      id: "gradient-synth", 
+      id: "gradient-synth",
       name: "Gradient Synth",
-      icon: gradientSynthIcon,
+      icon: "https://placehold.co/128x128?text=Gradient%20Synth",
       shortDescription: "Make music from color.",
       longDescription: "Tap, slide, and hear gradients morph into pads, leads, and drones. Designed with beginners in mind, making music exploration fun and intuitive for everyone.",
       available: true,
@@ -27,8 +23,8 @@ const FeaturedAppsSection = () => {
     },
     {
       id: "winter-zen",
-      name: "Winter Zen", 
-      icon: winterZenIcon,
+      name: "Winter Zen",
+      icon: "https://placehold.co/128x128?text=Winter%20Zen",
       shortDescription: "A musical snow globe for relaxation.",
       longDescription: "Step into a serene winter wonderland that transforms your device into an interactive snow globe. Each tap creates cascading snowflakes and ambient soundscapes.",
       available: true,
@@ -37,7 +33,7 @@ const FeaturedAppsSection = () => {
     {
       id: "promote-pdx",
       name: "Promote PDX",
-      icon: promotePdxIcon,
+      icon: "https://placehold.co/128x128?text=Promote%20PDX",
       shortDescription: "Discover Portland's live music scene.",
       longDescription: "A community-minded guide to artists, venues, and shows—built to support local music discovery and connect fans with Portland's vibrant scene.",
       available: false,
