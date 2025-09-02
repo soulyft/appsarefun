@@ -41,7 +41,9 @@ const FeaturedAppsSection = () => {
       shortDescription: "Discover Portland's live music scene.",
       longDescription: "A community-minded guide to artists, venues, and shows—built to support local music discovery and connect fans with Portland's vibrant scene.",
       available: false,
-      comingSoon: true
+      comingSoon: true,
+      interestUrl:
+        "https://docs.google.com/forms/d/e/1FAIpQLSc5TX2Z_rLcJ7q8VFa9j97jFT61vFCgRV5JiACBjVfqcV5Wsw/viewform?usp=sharing&ouid=115128560275753879378"
     }
   ];
 
@@ -90,23 +92,34 @@ const FeaturedAppsSection = () => {
               </p>
               
               {app.available ? (
-                <Button 
-                  variant="default" 
+                <Button
+                  variant="default"
                   className="w-full sm:w-auto"
                   asChild
                 >
-                  <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={app.appStoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Learn more
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
               ) : (
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full sm:w-auto"
-                  disabled
+                  asChild
                 >
-                  Get updates →
+                  <a
+                    href={app.interestUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Learn more
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
                 </Button>
               )}
             </div>
