@@ -1,73 +1,39 @@
-# Welcome to your Lovable project
+# Apps Are Fun
 
-## Project info
+This repository contains the marketing website for **Apps Are Fun**, an iOS app studio that designs and ships native SwiftUI experiences.
 
-**URL**: https://lovable.dev/projects/94bcc604-8e5a-425c-a958-032138208e96
+## Featured apps
 
-## How can I edit this code?
+The site showcases several iOS apps built by the studio:
 
-There are several ways of editing your application.
+- **[Chime](https://apps.apple.com/us/app/chime-turn-noise-into-music/id6692633791)** – turn noise into music with touch.
+- **[Gradient Synth](https://apps.apple.com/us/app/gradient-synth/id6477543878)** – make music from color.
+- **[Winter Zen](https://apps.apple.com/us/app/winter-zen-snow-globe-music/id1659934804)** – a musical snow globe for relaxation.
+- **Promote PDX** – discover Portland's live music scene. Want to know when it launches? [Fill out the interest form](https://docs.google.com/forms/d/e/1FAIpQLSc5TX2Z_rLcJ7q8VFa9j97jFT61vFCgRV5JiACBjVfqcV5Wsw/viewform?usp=sharing&ouid=115128560275753879378) to learn more.
 
-**Use Lovable**
+## Development
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/94bcc604-8e5a-425c-a958-032138208e96) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+This project uses [Vite](https://vitejs.dev/) with React and TypeScript. To run the site locally:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+To create a production build:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```sh
+npm run build
+```
 
-**Use GitHub Codespaces**
+## Tech stack
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
 - React
-- shadcn-ui
+- TypeScript
+- Vite
 - Tailwind CSS
+- shadcn/ui
 
-## How can I deploy this project?
+## License
 
-Simply open [Lovable](https://lovable.dev/projects/94bcc604-8e5a-425c-a958-032138208e96) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+This project is licensed under the MIT License.
