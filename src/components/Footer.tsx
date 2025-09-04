@@ -2,12 +2,21 @@ import { Instagram, Twitter, Linkedin, ExternalLink } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
-  
+
+  const handleShare = () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      navigator.share({ url });
+    } else {
+      window.location.href = `mailto:?subject=${encodeURIComponent("Check this out")}&body=${encodeURIComponent(url)}`;
+    }
+  };
+
   const socialLinks = [
-    { name: "App Store", icon: ExternalLink, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" }
+    { name: "Share", icon: ExternalLink, onClick: handleShare },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/soulyftmusic" },
+    { name: "X", icon: Twitter, href: "https://x.com/souLyft" },
+    { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/in/corey-lofthus/" }
   ];
 
   return (
@@ -25,16 +34,27 @@ const Footer = () => {
           
           <div className="flex items-center gap-6">
             {socialLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors p-2"
-                aria-label={link.name}
-              >
-                <link.icon className="h-5 w-5" />
-              </a>
+              link.href ? (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors p-2 hover:scale-110 transition-transform"
+                  aria-label={link.name}
+                >
+                  <link.icon className="h-5 w-5" />
+                </a>
+              ) : (
+                <button
+                  key={link.name}
+                  onClick={link.onClick}
+                  className="text-muted-foreground hover:text-primary transition-colors p-2 hover:scale-110 transition-transform"
+                  aria-label={link.name}
+                >
+                  <link.icon className="h-5 w-5" />
+                </button>
+              )
             ))}
           </div>
         </div>

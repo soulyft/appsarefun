@@ -16,6 +16,8 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const mailto = `mailto:dev@appsarefun.com?subject=${encodeURIComponent('New Project Inquiry')}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nProject: ${formData.project}`)}`;
+    window.location.href = mailto;
     toast({
       title: "Thanks for reaching out!",
       description: "We'll get back to you within 24 hours.",
