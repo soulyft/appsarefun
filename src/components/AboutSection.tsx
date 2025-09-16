@@ -24,9 +24,9 @@ const AboutSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0 animate-[fadeInUp_0.7s_ease-out_0.2s_forwards]">
           {pillars.map((pillar, index) => (
-            <div 
-              key={index} 
-              className="flex items-center gap-3 p-4 rounded-xl bg-gradient-subtle border border-border/50"
+            <div
+              key={index}
+              className="flex items-center gap-3 p-4 rounded-xl bg-gradient-subtle border border-border/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-hover)]"
             >
               <CheckCircle className="h-6 w-6 text-secondary flex-shrink-0" />
               <span className="text-foreground font-medium">{pillar}</span>

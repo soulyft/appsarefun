@@ -44,9 +44,9 @@ const ServicesSection = () => {
         
         <div className="space-y-4 mb-12 opacity-0 animate-[fadeInUp_0.7s_ease-out_0.2s_forwards]">
           {capabilities.map((capability, index) => (
-            <div 
-              key={index} 
-              className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-card hover:bg-gradient-subtle transition-colors duration-200"
+            <div
+              key={index}
+              className="flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-card transition-all duration-300 hover:bg-gradient-subtle hover:-translate-y-1 hover:shadow-[var(--shadow-hover)]"
             >
               <capability.icon className="h-6 w-6 text-primary flex-shrink-0" />
               <span className="text-foreground">{capability.text}</span>
