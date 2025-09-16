@@ -1,18 +1,51 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 const HeroSection = () => {
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
+
+  // Parallax background elements
+  const parallaxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      const layers = parallaxRef.current?.children;
+      if (!layers) return;
+      Array.from(layers).forEach((layer) => {
+        const speed = parseFloat(
+          (layer as HTMLElement).dataset.speed || "0"
+        );
+        (layer as HTMLElement).style.transform = `translateY(${offset * speed}px)`;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section className="hero-section flex items-center justify-center relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-32 right-16 w-48 h-48 bg-white/5 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/15 rounded-full blur-lg"></div>
+      {/* Background decorative elements with parallax */}
+      <div
+        ref={parallaxRef}
+        className="absolute inset-0 overflow-hidden pointer-events-none"
+      >
+        <div
+          data-speed="-0.3"
+          className="absolute top-20 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl will-change-transform"
+        ></div>
+        <div
+          data-speed="0.25"
+          className="absolute bottom-32 right-16 w-48 h-48 bg-white/5 rounded-full blur-2xl will-change-transform"
+        ></div>
+        <div
+          data-speed="-0.15"
+          className="absolute top-1/2 left-1/3 w-24 h-24 bg-white/15 rounded-full blur-lg will-change-transform"
+        ></div>
       </div>
       
       <div className="container mx-auto px-4 text-center text-white relative z-10 opacity-0 animate-[fadeInUp_0.7s_ease-out_forwards]">

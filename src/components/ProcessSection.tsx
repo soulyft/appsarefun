@@ -43,9 +43,9 @@ const ProcessSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {steps.map((step, index) => (
-            <div 
-              key={index} 
-              className="text-center opacity-0 animate-[fadeInUp_0.7s_ease-out_forwards] relative"
+            <div
+              key={index}
+              className="text-center p-6 rounded-xl border border-border/50 bg-card transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-hover)] opacity-0 animate-[fadeInUp_0.7s_ease-out_forwards] relative"
               style={{ animationDelay: `${index * 0.1 + 0.2}s` }}
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
@@ -57,7 +57,7 @@ const ProcessSection = () => {
               <p className="text-sm text-muted-foreground">
                 {step.description}
               </p>
-              
+
               {/* Arrow connector for larger screens */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-8 -right-4 text-muted-foreground/30">
