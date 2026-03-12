@@ -1,13 +1,13 @@
-import { Instagram, Twitter, Linkedin, ExternalLink } from "lucide-react";
+import { ExternalLink, Globe, Instagram, Sparkles } from "lucide-react";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
-    { name: "App Store", icon: ExternalLink, href: "#" },
-    { name: "Instagram", icon: Instagram, href: "#" },
-    { name: "Twitter", icon: Twitter, href: "#" },
-    { name: "LinkedIn", icon: Linkedin, href: "#" }
+    { name: "App Store", icon: ExternalLink, href: "https://apps.apple.com/us/developer/apps-are-fun-llc/id1659934806" },
+    { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/soulyftmusic/" },
+    { name: "Soulyft Audio", icon: Globe, href: "https://soulyftaudio.com/" },
+    { name: "Droplet", icon: Sparkles, href: "https://appsarefun.com/droplet" }
   ];
 
   return (

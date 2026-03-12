@@ -38,10 +38,11 @@ const FeaturedAppsSection = () => {
       id: "promote-pdx",
       name: "Promote PDX",
       icon: promotePdxIcon,
-      shortDescription: "Discover Portland's live music scene.",
-      longDescription: "A community-minded guide to artists, venues, and shows—built to support local music discovery and connect fans with Portland's vibrant scene.",
-      available: false,
-      comingSoon: true
+      shortDescription: "Portland's live music calendar.",
+      longDescription: "Now live on the App Store, Promote PDX helps fans discover shows, track favorites, and stay connected to Portland's local music scene.",
+      available: true,
+      appStoreUrl: "https://apps.apple.com/us/app/promote-pdx/id6747800917",
+      badge: "Now available"
     }
   ];
 
@@ -73,9 +74,9 @@ const FeaturedAppsSection = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-foreground mb-2">
                     {app.name}
-                    {app.comingSoon && (
+                    {app.badge && (
                       <span className="ml-2 text-sm text-muted-foreground font-normal">
-                        — Coming Soon
+                        — {app.badge}
                       </span>
                     )}
                   </h3>
@@ -89,24 +90,16 @@ const FeaturedAppsSection = () => {
                 {app.longDescription}
               </p>
               
-              {app.available ? (
+              {app.available && (
                 <Button 
                   variant="default" 
                   className="w-full sm:w-auto"
                   asChild
                 >
                   <a href={app.appStoreUrl} target="_blank" rel="noopener noreferrer">
-                    Learn more
+                    View on the App Store
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </a>
-                </Button>
-              ) : (
-                <Button 
-                  variant="outline" 
-                  className="w-full sm:w-auto"
-                  disabled
-                >
-                  Get updates →
                 </Button>
               )}
             </div>
