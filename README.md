@@ -26,6 +26,28 @@ To create a production build:
 npm run build
 ```
 
+## Routing and Vercel deployment
+
+This site is a **single-page app (SPA)** that uses `react-router-dom` with `BrowserRouter`.
+That means URLs like `/droplet` are client-side routes, not separate server-rendered pages.
+
+When deployed on Vercel, direct requests to deep links (for example, loading `/droplet` in a fresh tab) must be rewritten to `/index.html` so the React app can boot and resolve the route in the browser.
+
+The repo includes a `vercel.json` fallback route for this:
+
+```json
+{
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
+  ]
+}
+```
+
+### Rule for future routes
+
+If you add new client-side routes in React Router, keep the SPA fallback rewrite in `vercel.json`. Without it, direct navigation to those routes will return Vercel `404 / NOT_FOUND` even though in-app navigation still works.
+
 ## Tech stack
 
 - React
