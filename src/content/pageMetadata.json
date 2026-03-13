@@ -15,14 +15,14 @@
       "title": "Droplet for Mac — Go Straight to the Thing You Need",
       "description": "Droplet turns your phone into a focused board of actions for your Mac. Open apps, links, files, folders, and shortcuts in one tap.",
       "type": "website",
-      "imagePattern": "droplet ios screenshot focus mac control restored",
+      "imagePattern": "droplet-focus-mac-optimized",
       "imageTarget": "droplet-preview.png"
     },
     "/droplet/mac-setup": {
       "title": "Install Droplet on Your Mac — TestFlight Setup",
       "description": "Accept the TestFlight invite for Droplet on your Mac, install the macOS build, and finish setup in a few quick steps.",
       "type": "website",
-      "imagePattern": "Droplet Icon 1024",
+      "imagePattern": "droplet-mac-demo-poster",
       "imageTarget": "droplet-mac-setup.png"
     }
   }

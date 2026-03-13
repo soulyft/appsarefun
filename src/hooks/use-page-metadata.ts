@@ -7,6 +7,7 @@ type PageEntry = {
   type?: string;
   imageUrl?: string;
   imageTarget?: string;
+  faviconUrl?: string;
 };
 
 const site = pageMetadata.site;
@@ -41,6 +42,36 @@ const setCanonical = (href: string) => {
   }
 
   link.setAttribute("href", href);
+};
+
+const setLinkTag = ({
+  rel,
+  href,
+  type,
+}: {
+  rel: string;
+  href: string;
+  type?: string;
+}) => {
+  let link = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+
+  if (!link) {
+    link = document.createElement("link");
+    link.setAttribute("rel", rel);
+    document.head.appendChild(link);
+  }
+
+  link.setAttribute("href", href);
+
+  if (type) {
+    link.setAttribute("type", type);
+  } else {
+    link.removeAttribute("type");
+  }
+};
+
+const removeLinkTag = (rel: string) => {
+  document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`)?.remove();
 };
 
 export const usePageMetadata = (path: string, overrides?: Partial<PageEntry>) => {
@@ -78,5 +109,13 @@ export const usePageMetadata = (path: string, overrides?: Partial<PageEntry>) =>
     setMetaTag({ attr: "name", key: "twitter:description", content: metadata.description });
     setMetaTag({ attr: "name", key: "twitter:image", content: imageUrl });
     setCanonical(absoluteUrl);
+
+    if (metadata.faviconUrl) {
+      setLinkTag({ rel: "icon", href: metadata.faviconUrl, type: "image/png" });
+      setLinkTag({ rel: "shortcut icon", href: metadata.faviconUrl, type: "image/png" });
+    } else {
+      removeLinkTag("icon");
+      removeLinkTag("shortcut icon");
+    }
   }, [overrides, path]);
 };

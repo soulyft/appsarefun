@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import dropletIcon from "@/assets/Droplet Icon 1024.png";
-import dropletScreenshotBoard from "@/assets/droplet onboarding board type.PNG";
+import dropletIcon from "@/assets/droplet-icon-optimized.webp";
+import dropletScreenshotBoard from "@/assets/droplet-onboarding-board-optimized.webp";
 import dropletDashboard from "@/assets/droplet est time saved dashboard.jpg";
 
 const DropletBanner = () => {

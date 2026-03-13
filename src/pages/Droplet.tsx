@@ -7,16 +7,18 @@ import {
   Download,
   PlayCircle,
 } from "lucide-react";
-import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
+import { CSSProperties, MutableRefObject, ReactNode, useEffect, useRef, useState } from "react";
 import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
-import dropletIcon from "@/assets/Droplet Icon 1024.png";
-import dropletMacDemo from "@/assets/droplet-mac-demo.mp4";
-import dropletAddCustomIcon from "@/assets/droplet add custom icon.mov";
-import dropletCloseupVideo from "@/assets/droplet dash design closeup liquid glass.mov";
-import dropletIosDashboard from "@/assets/droplet ios dashboard.png";
-import dropletScreenshotBoard from "@/assets/droplet onboarding board type.PNG";
-import dropletScreenshotFocusMac from "@/assets/droplet ios screenshot focus mac control restored.PNG";
-import dropletScreenshotTapRing from "@/assets/droplet ios screenshot focus tap ring.PNG";
+import dropletIcon from "@/assets/droplet-icon-optimized.webp";
+import dropletFavicon from "@/assets/droplet-favicon.png";
+import dropletMacDemo from "@/assets/droplet-mac-demo-optimized.mp4";
+import dropletMacDemoPoster from "@/assets/droplet-mac-demo-poster.jpg";
+import dropletAddCustomIcon from "@/assets/droplet-add-custom-icon-optimized.mp4";
+import dropletCloseupVideo from "@/assets/droplet-closeup-optimized.mp4";
+import dropletIosDashboard from "@/assets/droplet-ios-dashboard-optimized.webp";
+import dropletScreenshotBoard from "@/assets/droplet-onboarding-board-optimized.webp";
+import dropletScreenshotFocusMac from "@/assets/droplet-focus-mac-optimized.webp";
+import dropletScreenshotTapRing from "@/assets/droplet-tap-ring-optimized.webp";
 import dropletDashboard from "@/assets/droplet est time saved dashboard.jpg";
 
 const waitlistBenefits = [
@@ -134,7 +136,122 @@ const clamp = (value: number, min: number, max: number) => {
   return Math.min(Math.max(value, min), max);
 };
 
-const ScrollScrubVideo = ({
+const LazyVideo = ({
+  src,
+  poster,
+  className,
+  style,
+  priority = false,
+  rootMargin = "320px 0px",
+  loop = true,
+  autoPlay = true,
+  preload = "metadata",
+  videoRef,
+  onLoadedData,
+}: {
+  src: string;
+  poster?: string;
+  className: string;
+  style?: CSSProperties;
+  priority?: boolean;
+  rootMargin?: string;
+  loop?: boolean;
+  autoPlay?: boolean;
+  preload?: "none" | "metadata" | "auto";
+  videoRef?: MutableRefObject<HTMLVideoElement | null>;
+  onLoadedData?: () => void;
+}) => {
+  const internalVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldLoad, setShouldLoad] = useState(priority);
+
+  useEffect(() => {
+    if (priority || shouldLoad) {
+      return;
+    }
+
+    const video = internalVideoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin },
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, [priority, rootMargin, shouldLoad]);
+
+  useEffect(() => {
+    if (!shouldLoad || !autoPlay) {
+      return;
+    }
+
+    const video = internalVideoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+
+      if (playPromise instanceof Promise) {
+        void playPromise.catch(() => {
+          // Autoplay can still be blocked in some browsers even when muted.
+        });
+      }
+    };
+
+    if (video.readyState >= 2) {
+      attemptPlay();
+    }
+
+    video.addEventListener("loadeddata", attemptPlay);
+
+    return () => {
+      video.removeEventListener("loadeddata", attemptPlay);
+    };
+  }, [autoPlay, shouldLoad, src]);
+
+  const setVideoRef = (node: HTMLVideoElement | null) => {
+    internalVideoRef.current = node;
+
+    if (videoRef) {
+      videoRef.current = node;
+    }
+  };
+
+  const handleLoadedData = () => {
+    onLoadedData?.();
+  };
+
+  return (
+    <video
+      ref={setVideoRef}
+      src={shouldLoad ? src : undefined}
+      muted
+      playsInline
+      autoPlay={autoPlay}
+      loop={loop}
+      preload={shouldLoad ? preload : "none"}
+      poster={poster}
+      className={className}
+      style={style}
+      onLoadedData={handleLoadedData}
+    />
+  );
+};
+
+const ScrollDrivenVideo = ({
   src,
   poster,
 }: {
@@ -143,7 +260,6 @@ const ScrollScrubVideo = ({
 }) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -168,7 +284,7 @@ const ScrollScrubVideo = ({
       );
       const targetTime = progress * Math.max(video.duration - 0.05, 0);
 
-      if (Math.abs(video.currentTime - targetTime) > 0.02) {
+      if (Math.abs(video.currentTime - targetTime) > 0.033) {
         video.currentTime = targetTime;
       }
     };
@@ -179,7 +295,6 @@ const ScrollScrubVideo = ({
     };
 
     const handleMetadata = () => {
-      setIsReady(true);
       video.pause();
       requestUpdate();
     };
@@ -199,30 +314,23 @@ const ScrollScrubVideo = ({
       window.removeEventListener("resize", requestUpdate);
       video.removeEventListener("loadedmetadata", handleMetadata);
     };
-  }, []);
+  }, [src]);
 
   return (
     <section ref={sectionRef} className="relative">
       <div className="relative mx-auto w-fit">
         <div className="droplet-phone-frame w-[14rem] sm:w-[16rem]">
           <div className="droplet-phone-screen">
-            <video
-              ref={videoRef}
-              muted
-              playsInline
-              preload="auto"
+            <LazyVideo
+              videoRef={videoRef}
+              src={src}
               poster={poster}
+              autoPlay={false}
+              loop={false}
               className="block aspect-[1179/2556] w-full object-cover"
-            >
-              <source src={src} type='video/quicktime; codecs="hvc1"' />
-            </video>
+            />
           </div>
         </div>
-        {!isReady && (
-          <div className="absolute inset-x-0 -bottom-8 text-center">
-            <p className="droplet-text-soft text-sm">Loading…</p>
-          </div>
-        )}
       </div>
     </section>
   );
@@ -380,7 +488,9 @@ const Droplet = () => {
   const isLegacyMacSetupRoute = source === "phone_onboarding_finish_setup";
   const isMacSetupPage = isMacSetupRoute || isLegacyMacSetupRoute;
   const isMobile = useIsMobile();
-  usePageMetadata(isMacSetupPage ? "/droplet/mac-setup" : "/droplet");
+  usePageMetadata(isMacSetupPage ? "/droplet/mac-setup" : "/droplet", {
+    faviconUrl: dropletFavicon,
+  });
   const [heroParallax, setHeroParallax] = useState(0);
   const dashboardSectionRef = useRef<HTMLDivElement | null>(null);
   const dashboardBackgroundVideoRef = useRef<HTMLVideoElement | null>(null);
@@ -465,28 +575,21 @@ const Droplet = () => {
       return;
     }
 
-    let rafId = 0;
-
-    const updateFrame = () => {
+    const syncFrame = () => {
       if (!video.duration) {
         return;
       }
 
       const targetTime = dashboardParallax * Math.max(video.duration - 0.05, 0);
 
-      if (Math.abs(video.currentTime - targetTime) > 0.02) {
+      if (Math.abs(video.currentTime - targetTime) > 0.033) {
         video.currentTime = targetTime;
       }
     };
 
-    const requestUpdate = () => {
-      cancelAnimationFrame(rafId);
-      rafId = window.requestAnimationFrame(updateFrame);
-    };
-
     const handleMetadata = () => {
       video.pause();
-      requestUpdate();
+      syncFrame();
     };
 
     if (video.readyState >= 1) {
@@ -495,10 +598,9 @@ const Droplet = () => {
       video.addEventListener("loadedmetadata", handleMetadata);
     }
 
-    requestUpdate();
+    syncFrame();
 
     return () => {
-      cancelAnimationFrame(rafId);
       video.removeEventListener("loadedmetadata", handleMetadata);
     };
   }, [dashboardParallax, isMacSetupPage]);
@@ -633,12 +735,10 @@ const Droplet = () => {
             <Reveal delay={70} className="mt-8">
               <div className="droplet-laptop-frame mx-auto max-w-[88rem]">
                 <div className="droplet-laptop-screen">
-                  <video
+                  <LazyVideo
                     src={dropletMacDemo}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
+                    poster={dropletMacDemoPoster}
+                    priority
                     className="block aspect-video w-full object-contain"
                   />
                 </div>
@@ -704,12 +804,14 @@ const Droplet = () => {
                 className="droplet-panel relative w-full overflow-hidden rounded-none border-x-0 p-5 sm:rounded-[2.4rem] sm:border-x sm:p-6 lg:p-8"
               >
                 <div className="absolute inset-0 overflow-hidden">
-                  <video
-                    ref={dashboardBackgroundVideoRef}
+                  <LazyVideo
+                    videoRef={dashboardBackgroundVideoRef}
                     src={dropletCloseupVideo}
-                    muted
-                    playsInline
-                    preload="auto"
+                    poster={dropletScreenshotBoard}
+                    autoPlay={false}
+                    loop={false}
+                    preload="metadata"
+                    rootMargin="420px 0px"
                     className="absolute inset-0 h-full w-full object-cover opacity-[0.2] blur-[1px] [object-position:55%_50%]"
                     style={{
                       transform: `translate3d(0, ${dashboardParallax * -56}px, 0) scale(${1.32 + dashboardParallax * 0.08})`,
@@ -733,7 +835,7 @@ const Droplet = () => {
                     </div>
 
                     <div className="flex justify-center xl:justify-start">
-                      <ScrollScrubVideo src={dropletAddCustomIcon} poster={dropletScreenshotBoard} />
+                      <ScrollDrivenVideo src={dropletAddCustomIcon} poster={dropletScreenshotBoard} />
                     </div>
                   </div>
 

@@ -11,7 +11,7 @@ const metadata = JSON.parse(await readFile(metadataPath, "utf8"));
 const template = await readFile(path.join(distDir, "index.html"), "utf8");
 const assetFiles = await readdir(assetsDir);
 
-const defaultImagePattern = "Droplet Icon 1024";
+const defaultImagePattern = "droplet-onboarding-board-optimized";
 const defaultImageTarget = "default-preview.png";
 
 const escapeHtml = (value) =>
