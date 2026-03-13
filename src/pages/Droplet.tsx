@@ -537,6 +537,9 @@ const Droplet = () => {
                     </p>
                   </div>
                 </div>
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#38BDF8]">
+                  Droplet
+                </p>
                 <h1 className="max-w-[11ch] text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-[4.9rem] lg:leading-[0.94]">
                   Your fastest path to anything.
                 </h1>
@@ -796,7 +799,7 @@ const Droplet = () => {
                   Start work faster. Move between contexts. Keep key destinations close.
                 </h2>
                 <p className="droplet-text-muted mx-auto mt-4 max-w-2xl text-lg leading-8">
-                  The value is simple: you already know where you want to go. Droplet gets you there faster.
+                  The value is simple: you already know where you want to go. Droplet gets you there.
                 </p>
               </div>
             </Reveal>
