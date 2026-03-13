@@ -1,0 +1,29 @@
+{
+  "site": {
+    "name": "Apps Are Fun",
+    "baseUrl": "https://appsarefun.com",
+    "twitterSite": "@appsarefun",
+    "author": "Apps Are Fun"
+  },
+  "pages": {
+    "/": {
+      "title": "Apps Are Fun — iOS App Development That Drives Results",
+      "description": "Transform your business with custom iOS apps. Expert SwiftUI development, App Store optimization, and proven results. From startups to enterprise, we deliver profitable mobile solutions.",
+      "type": "website"
+    },
+    "/droplet": {
+      "title": "Droplet for Mac — Go Straight to the Thing You Need",
+      "description": "Droplet turns your phone into a focused board of actions for your Mac. Open apps, links, files, folders, and shortcuts in one tap.",
+      "type": "website",
+      "imagePattern": "droplet ios screenshot focus mac control restored",
+      "imageTarget": "droplet-preview.png"
+    },
+    "/droplet/mac-setup": {
+      "title": "Install Droplet on Your Mac — TestFlight Setup",
+      "description": "Accept the TestFlight invite for Droplet on your Mac, install the macOS build, and finish setup in a few quick steps.",
+      "type": "website",
+      "imagePattern": "Droplet Icon 1024",
+      "imageTarget": "droplet-mac-setup.png"
+    }
+  }
+}

@@ -6,8 +6,11 @@ import ServicesSection from "@/components/ServicesSection";
 import ProcessSection from "@/components/ProcessSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { usePageMetadata } from "@/hooks/use-page-metadata";
 
 const Index = () => {
+  usePageMetadata("/");
+
   return (
     <div className="min-h-screen">
       <HeroSection />

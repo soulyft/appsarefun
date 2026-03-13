@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
 import Footer from "@/components/Footer";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { usePageMetadata } from "@/hooks/use-page-metadata";
 import {
   ArrowRight,
   Download,
   PlayCircle,
 } from "lucide-react";
 import { CSSProperties, ReactNode, useEffect, useRef, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import dropletIcon from "@/assets/Droplet Icon 1024.png";
 import dropletMacDemo from "@/assets/droplet-mac-demo.mp4";
 import dropletAddCustomIcon from "@/assets/droplet add custom icon.mov";
@@ -371,15 +373,22 @@ const DropletMacInstallPage = () => {
 };
 
 const Droplet = () => {
+  const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
   const source = searchParams.get("source");
+  const isMacSetupRoute = pathname === "/droplet/mac-setup";
+  const isLegacyMacSetupRoute = source === "phone_onboarding_finish_setup";
+  const isMacSetupPage = isMacSetupRoute || isLegacyMacSetupRoute;
+  const isMobile = useIsMobile();
+  usePageMetadata(isMacSetupPage ? "/droplet/mac-setup" : "/droplet");
   const [heroParallax, setHeroParallax] = useState(0);
   const dashboardSectionRef = useRef<HTMLDivElement | null>(null);
   const dashboardBackgroundVideoRef = useRef<HTMLVideoElement | null>(null);
   const [dashboardParallax, setDashboardParallax] = useState(0);
 
   useEffect(() => {
-    if (source === "phone_onboarding_finish_setup") {
+    if (isMacSetupPage || isMobile) {
+      setHeroParallax(0);
       return;
     }
 
@@ -402,10 +411,11 @@ const Droplet = () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [source]);
+  }, [isMacSetupPage, isMobile]);
 
   useEffect(() => {
-    if (source === "phone_onboarding_finish_setup") {
+    if (isMacSetupPage) {
+      setDashboardParallax(0);
       return;
     }
 
@@ -442,10 +452,10 @@ const Droplet = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
-  }, [source]);
+  }, [isMacSetupPage]);
 
   useEffect(() => {
-    if (source === "phone_onboarding_finish_setup") {
+    if (isMacSetupPage) {
       return;
     }
 
@@ -491,9 +501,13 @@ const Droplet = () => {
       cancelAnimationFrame(rafId);
       video.removeEventListener("loadedmetadata", handleMetadata);
     };
-  }, [dashboardParallax, source]);
+  }, [dashboardParallax, isMacSetupPage]);
 
-  if (source === "phone_onboarding_finish_setup") {
+  if (!isMacSetupRoute && isLegacyMacSetupRoute) {
+    return <Navigate replace to="/droplet/mac-setup" />;
+  }
+
+  if (isMacSetupPage) {
     return <DropletMacInstallPage />;
   }
 
@@ -548,13 +562,13 @@ const Droplet = () => {
                 </p>
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <Button asChild size="lg" className={`h-12 rounded-full px-7 text-base ${dropletPrimaryButton}`}>
+                  <Button asChild size="lg" className={`h-12 w-full rounded-full px-7 text-base sm:w-auto ${dropletPrimaryButton}`}>
                     <a href="#waitlist">
                       Join the waitlist
                       <ArrowRight className="h-4 w-4" />
                     </a>
                   </Button>
-                  <Button asChild size="lg" variant="outline" className={`h-12 rounded-full px-7 text-base ${dropletSecondaryButton}`}>
+                  <Button asChild size="lg" variant="outline" className={`h-12 w-full rounded-full px-7 text-base sm:w-auto ${dropletSecondaryButton}`}>
                     <a href="#demo">
                       <PlayCircle className="h-4 w-4" />
                       Watch the demo
@@ -569,23 +583,26 @@ const Droplet = () => {
             </Reveal>
 
             <Reveal delay={80}>
-              <div className="relative min-h-[28rem] lg:min-h-[34rem]">
+              <div className="relative mx-auto flex max-w-[22rem] flex-col items-center gap-4 pt-4 sm:max-w-[25rem] lg:block lg:max-w-none lg:min-h-[34rem]">
                 <div className="absolute inset-x-10 top-12 h-44 rounded-full bg-[#38BDF8]/12 blur-3xl" />
+                <div className="relative z-30 rounded-full border border-white/10 bg-[#13233F]/80 px-4 py-2 backdrop-blur lg:absolute lg:right-6 lg:top-6">
+                  <p className="text-sm font-medium text-slate-100">A board of actions for your Mac</p>
+                </div>
                 <PhoneFrame
                   src={dropletScreenshotFocusMac}
                   alt="Droplet iPhone screenshot showing focused Mac control"
-                  className="droplet-floating absolute left-4 top-14 z-10 w-[13.5rem] rotate-[-6deg] sm:w-[15rem]"
+                  className="droplet-floating relative z-10 w-[12.5rem] self-start rotate-[-5deg] sm:w-[14rem] lg:absolute lg:left-4 lg:top-14 lg:w-[15rem] lg:rotate-[-6deg]"
                   style={{ transform: `translateY(${heroParallax * -0.38}px) rotate(-6deg)` }}
                 />
                 <PhoneFrame
                   src={dropletScreenshotBoard}
                   alt="Droplet iPhone screenshot showing board setup"
-                  className="droplet-floating-delayed absolute right-2 top-0 z-20 w-[15rem] rotate-[6deg] sm:w-[17rem]"
+                  className="droplet-floating-delayed relative z-20 -mt-14 w-[14rem] self-end rotate-[5deg] sm:w-[16rem] lg:absolute lg:right-2 lg:top-0 lg:mt-0 lg:w-[17rem] lg:rotate-[6deg]"
                   style={{ transform: `translateY(${heroParallax * -0.16}px) rotate(6deg)` }}
                 />
 
                 <div
-                  className="droplet-panel-subtle absolute bottom-8 left-[22%] z-30 w-[13rem] rounded-[1.45rem] p-3 shadow-[0_24px_80px_-36px_rgba(2,8,23,0.9)] sm:w-[15rem]"
+                  className="droplet-panel-subtle relative z-30 -mt-14 w-[13.5rem] self-center rounded-[1.45rem] p-3 shadow-[0_24px_80px_-36px_rgba(2,8,23,0.9)] sm:w-[15rem] lg:absolute lg:bottom-8 lg:left-[22%] lg:mt-0"
                   style={{ transform: `translateY(${heroParallax * 0.14}px)` }}
                 >
                   <img
@@ -593,10 +610,6 @@ const Droplet = () => {
                     alt="Droplet dashboard showing estimated time saved"
                     className="block w-full rounded-[1.2rem]"
                   />
-                </div>
-
-                <div className="absolute right-6 top-6 z-30 rounded-full border border-white/10 bg-[#13233F]/80 px-4 py-2 backdrop-blur">
-                  <p className="text-sm font-medium text-slate-100">A board of actions for your Mac</p>
                 </div>
               </div>
             </Reveal>
@@ -637,8 +650,8 @@ const Droplet = () => {
           </div>
         </section>
 
-        <section id="how-it-works" className="px-4 py-16 sm:px-6 lg:px-8">
-          <div className="container mx-auto max-w-6xl">
+        <section id="how-it-works" className="py-16 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-6xl px-4 sm:px-0">
             <Reveal>
               <div className="grid gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
                 <div>
@@ -654,8 +667,10 @@ const Droplet = () => {
                 </div>
               </div>
             </Reveal>
+          </div>
 
-            <Reveal delay={40} className="mt-8">
+          <div className="container mx-auto mt-8 max-w-6xl px-4 sm:px-0">
+            <Reveal delay={40}>
               <div className="grid gap-4 md:grid-cols-3">
                 {[
                   {
@@ -680,11 +695,13 @@ const Droplet = () => {
                 ))}
               </div>
             </Reveal>
+          </div>
 
-            <Reveal delay={80} className="mt-8">
+          <Reveal delay={80} className="mt-8">
+            <div className="w-full sm:container sm:mx-auto sm:max-w-6xl sm:px-0">
               <div
                 ref={dashboardSectionRef}
-                className="droplet-panel relative overflow-hidden rounded-[2.4rem] p-5 sm:p-6 lg:p-8"
+                className="droplet-panel relative w-full overflow-hidden rounded-none border-x-0 p-5 sm:rounded-[2.4rem] sm:border-x sm:p-6 lg:p-8"
               >
                 <div className="absolute inset-0 overflow-hidden">
                   <video
@@ -784,8 +801,8 @@ const Droplet = () => {
                   </div>
                 </div>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </section>
 
         <section className="px-4 py-12 sm:px-6 lg:px-8">

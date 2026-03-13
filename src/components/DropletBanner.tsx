@@ -44,28 +44,57 @@ const DropletBanner = () => {
                   </span>
                 ))}
               </div>
+
+              <div className="mt-6 grid gap-3 lg:hidden">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 w-full justify-center rounded-full bg-[var(--droplet-primary)] text-white hover:bg-[#1D4ED8]"
+                >
+                  <Link to="/droplet">
+                    Learn more
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-12 w-full justify-center rounded-full border border-[#38BDF8]/25 bg-white/5 text-white hover:bg-white/10"
+                >
+                  <Link to="/droplet#demo">
+                    Watch the demo
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </Button>
+                <p className="droplet-text-soft text-sm leading-6">
+                  See the product visuals, demo, and waitlist.
+                </p>
+              </div>
             </div>
 
-            <div className="relative min-h-[22rem]">
-              <div className="droplet-floating absolute right-0 top-0 droplet-phone-frame w-[13rem] rotate-[7deg] sm:w-[15rem]">
-                <div className="droplet-phone-screen">
+            <div className="relative pt-2 lg:min-h-[22rem]">
+              <div className="mx-auto flex max-w-[20rem] flex-col items-center lg:block lg:max-w-none">
+                <div className="droplet-floating relative z-20 self-end droplet-phone-frame w-[13rem] rotate-[4deg] sm:w-[15rem] lg:absolute lg:right-0 lg:top-0 lg:rotate-[7deg]">
+                  <div className="droplet-phone-screen">
+                    <img
+                      src={dropletScreenshotBoard}
+                      alt="Droplet board setup screen"
+                      className="block h-full w-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                <div className="droplet-floating-delayed relative z-10 -mt-10 w-full max-w-[18rem] self-start rounded-[1.8rem] border border-white/10 bg-[#13233F]/95 p-3 shadow-[0_24px_80px_-40px_rgba(2,8,23,0.9)] sm:max-w-[20rem] lg:absolute lg:bottom-0 lg:left-0 lg:mt-0 lg:w-[18rem]">
                   <img
-                    src={dropletScreenshotBoard}
-                    alt="Droplet board setup screen"
-                    className="block h-full w-full object-cover"
+                    src={dropletDashboard}
+                    alt="Droplet estimated time saved dashboard"
+                    className="block w-full rounded-[1.2rem]"
                   />
                 </div>
               </div>
 
-              <div className="droplet-floating-delayed absolute bottom-0 left-0 w-[15rem] rounded-[1.8rem] border border-white/10 bg-[#13233F]/95 p-3 shadow-[0_24px_80px_-40px_rgba(2,8,23,0.9)] sm:w-[18rem]">
-                <img
-                  src={dropletDashboard}
-                  alt="Droplet estimated time saved dashboard"
-                  className="block w-full rounded-[1.2rem]"
-                />
-              </div>
-
-              <div className="absolute left-4 top-4 flex flex-col gap-3 sm:left-6 sm:top-6">
+              <div className="hidden lg:absolute lg:left-4 lg:top-4 lg:flex lg:flex-col lg:gap-3 xl:left-6 xl:top-6">
                 <Button
                   asChild
                   size="lg"
